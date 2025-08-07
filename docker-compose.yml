@@ -1,5 +1,7 @@
 services:
-  web:
+  dummy:
     build: .
+    image: ${IMAGE_NAME}
+    container_name: dummy
     ports:
       - '2222:80'
