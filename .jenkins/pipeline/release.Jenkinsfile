@@ -12,7 +12,7 @@ pipeline {
         VM_IP = '172.16.100.210'
         VM_SSH_CREDS_ID = 'ICTDEV_SSH_CRED_ID'
         APP_CONTAINER_NAME = 'dummy-app'
-        APP_HOST_PORT = '2222'
+        APP_HOST_PORT = '3333'
         APP_CONTAINER_PORT = '80'
     }
 

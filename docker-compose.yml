@@ -4,4 +4,4 @@ services:
     image: ${IMAGE_NAME}
     container_name: dummy
     ports:
-      - '2222:80'
+      - '3333:80'
