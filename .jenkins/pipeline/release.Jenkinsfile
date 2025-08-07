@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        GIT_REPO_URL = 'http://172.16.100.210:9300/ict-dev/Iseng.git'
+        GIT_REPO_URL = 'http://172.16.100.210:9300/effct/Iseng.git'
         REPO_BRANCH = 'main'
         PROJECT_NAME = 'dummy'
         APP_IMAGE_NAME = 'dummy-dum'
@@ -12,7 +12,7 @@ pipeline {
         VM_IP = '172.16.100.210'
         VM_SSH_CREDS_ID = 'ICTDEV_SSH_CRED_ID'
         APP_CONTAINER_NAME = 'dummy-app'
-        APP_HOST_PORT = '5150'
+        APP_HOST_PORT = '2222'
         APP_CONTAINER_PORT = '80'
     }
 
