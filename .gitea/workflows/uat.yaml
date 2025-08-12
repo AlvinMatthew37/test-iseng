@@ -14,4 +14,4 @@ jobs:
       - run: echo "Updating app image to latest"
       - run: |
           hash="${{ gitea.event.after }}" && version="uat-${hash:0:8}" && curl -L -X POST 'http://172.16.100.210:9200/job/dummy/job/test-teori/buildWithParameters?token=75e275006f53d2dadcf750992bdde0b8aa5ae78a' -H 'Authorization: Basic aWN0ZGV2OjExYzBlYzdkMWI1MTBiNWNiMDBiMjYzNmZhNDE1ZTNiOWI='
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: echo "🍏 This job's status is ${{ job.status }}"
