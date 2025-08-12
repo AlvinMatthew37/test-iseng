@@ -1,0 +1,16 @@
+name: New release action
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-release-image:
+    runs-on: docker
+    steps:
+      - run: echo "Building app for release $RELEASE_VERSION"
+      - name: Set env tag
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - run: |
+            curl --request POST --url 'http://172.16.100.210:9200/job/dummy/job/test-teori/buildWithParameters?token=75e275006f53d2dadcf750992bdde0b8aa5ae78a' --header 'Authorization: Basic aWN0ZGV2OjExYzBlYzdkMWI1MTBiNWNiMDBiMjYzNmZhNDE1ZTNiOWI='
+      - run: echo "🍏 This job's status is ${{ job.status }}."
