@@ -1,0 +1,17 @@
+name: Update UAT Action
+run-name: Received request on updating UAT environment from ${{ gitea.actor }}
+on:
+  push:
+    branches:
+      - uat
+jobs:
+  Process-Update-App-Image:
+    runs-on: host
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ gitea.event_name }} event."
+      - run: echo "🔎 The name of your branch is ${{ gitea.ref }} and your repository is ${{ gitea.repository }}."
+      - run: echo "💡 The ${{ gitea.repository }} repository has been cloned to the runner."
+      - run: echo "Updating app image to latest"
+      - run: |
+          hash="${{ gitea.event.after }}" && version="uat-${hash:0:8}" && curl -L -X POST 'http://172.16.100.210:9200/job/dummy/job/test-teori/buildWithParameters?token=75e275006f53d2dadcf750992bdde0b8aa5ae78a' -H 'Authorization: Basic aWN0ZGV2OjExYzBlYzdkMWI1MTBiNWNiMDBiMjYzNmZhNDE1ZTNiOWI='
+      - run: echo "🍏 This job's status is ${{ job.status }}."
