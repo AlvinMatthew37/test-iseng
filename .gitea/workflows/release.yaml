@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-release-image:
-    runs-on: host
+    runs-on: docker
     steps:
       - run: echo "Building app for release $RELEASE_VERSION"
       - name: Set env tag
