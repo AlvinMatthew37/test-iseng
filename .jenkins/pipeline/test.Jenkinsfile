@@ -45,6 +45,7 @@ pipeline {
                             </body>
                         </html>
                         """,
+                        from: "alvinmatthew37@gmail.com",
                         to: 'alvinmatthew370z@gmail.com'
                     )
                 }
