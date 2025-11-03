@@ -30,7 +30,7 @@ pipeline {
     // }
 
     stages {
-        stage('Fetch Source') {
+        stage('Ping') {
             steps {
                 testPing(
                     repoUrl: env.TARGET_IP,
