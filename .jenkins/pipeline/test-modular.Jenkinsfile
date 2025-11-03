@@ -13,7 +13,7 @@ pipeline {
         VM_IP = '172.16.100.210'
         VM_SSH_CREDS_ID = 'ICTDEV_SSH_CRED_ID'
         SONARQUBE_TOKEN = credentials('SONARQUBE_TOKEN')
-        VM_PATH = '/home/ictdev/env/pipeline-management/pipeline-management-fe/.env'
+        // VM_PATH = '/home/ictdev/env/pipeline-management/pipeline-management-fe/.env'
 
         TARGET_IP = '172.16.100.210'
     }
@@ -100,7 +100,7 @@ pipeline {
                     dockerCredsId: env.NEXUS_DOCKER_CREDS_ID,
                     projectName: env.PROJECT_NAME,
                     vmIp: env.VM_IP,
-                    vmPath: env.VM_PATH,
+                    // vmPath: env.VM_PATH,
                     vmSshCredsId: env.VM_SSH_CREDS_ID
                 )
             }
