@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment{
+        BUILD_URL='10.0.80.192:9200'
+    }
+
     parameters {
         string(
             name: 'REPO_BRANCH_PARAM',
