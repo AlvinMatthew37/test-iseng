@@ -22,12 +22,12 @@ pipeline {
     //     string(name: 'REPO_BRANCH_NAME', defaultValue: 'deployment-kantor', description: 'Branch to build')
     // }
 
-    options {
-        timestamps()
-        ansiColor('xterm')
-        disableConcurrentBuilds()
-        buildDiscarder(logRotator(numToKeepStr: '10'))
-    }
+    // options {
+    //     timestamps()
+    //     ansiColor('xterm')
+    //     disableConcurrentBuilds()
+    //     buildDiscarder(logRotator(numToKeepStr: '10'))
+    // }
 
     stages {
         stage('Fetch Source') {
