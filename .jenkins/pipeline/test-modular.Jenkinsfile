@@ -4,23 +4,23 @@ pipeline {
     agent any
 
     environment {
-        // GIT_REPO_URL = 'http://172.16.100.210:9300/ict-dev/pipeline-management-fe.git'
-        // PROJECT_NAME = 'pipeline-management'
-        // APP_IMAGE_NAME = 'pipeline-management-fe'
-        // NEXUS_DOCKER_REGISTRY_PUSH = '192.168.150.203:1234'
-        // NEXUS_DOCKER_REGISTRY_PULL = '10.0.80.192:1234'
-        // NEXUS_DOCKER_CREDS_ID = 'NEXUS_DOCKER_CREDS'
-        // VM_IP = '172.16.100.210'
-        // VM_SSH_CREDS_ID = 'ICTDEV_SSH_CRED_ID'
-        // SONARQUBE_TOKEN = credentials('SONARQUBE_TOKEN')
-        // VM_PATH = '/home/ictdev/env/pipeline-management/pipeline-management-fe/.env'
+        GIT_REPO_URL = 'http://172.16.100.210:9300/effct/Iseng.git'
+        PROJECT_NAME = 'test-modular'
+        APP_IMAGE_NAME = 'test-modular'
+        NEXUS_DOCKER_REGISTRY_PUSH = '192.168.150.203:1234'
+        NEXUS_DOCKER_REGISTRY_PULL = '10.0.80.192:1234'
+        NEXUS_DOCKER_CREDS_ID = 'NEXUS_DOCKER_CREDS'
+        VM_IP = '172.16.100.210'
+        VM_SSH_CREDS_ID = 'ICTDEV_SSH_CRED_ID'
+        SONARQUBE_TOKEN = credentials('SONARQUBE_TOKEN')
+        VM_PATH = '/home/ictdev/env/pipeline-management/pipeline-management-fe/.env'
 
         TARGET_IP = '172.16.100.210'
     }
 
-    // parameters {
-    //     string(name: 'REPO_BRANCH_NAME', defaultValue: 'deployment-kantor', description: 'Branch to build')
-    // }
+    parameters {
+        string(name: 'REPO_BRANCH_NAME', defaultValue: 'main', description: 'Branch to build')
+    }
 
     // options {
     //     timestamps()
@@ -37,16 +37,16 @@ pipeline {
                 )
             }
         }
-        // stage('Fetch Source') {
-        //     steps {
-        //         fetchSource(
-        //             repoUrl: env.GIT_REPO_URL,
-        //             branch: params.REPO_BRANCH_NAME,
-        //             credentialsId: 'GITEA_PAT',
-        //             appImageName: env.APP_IMAGE_NAME
-        //         )
-        //     }
-        // }
+        stage('Fetch Source') {
+            steps {
+                fetchSource(
+                    repoUrl: env.GIT_REPO_URL,
+                    branch: params.REPO_BRANCH_NAME,
+                    credentialsId: 'GITEA_PAT',
+                    appImageName: env.APP_IMAGE_NAME
+                )
+            }
+        }
 
         // stage('Code Scan') {
         //     steps {
@@ -59,14 +59,14 @@ pipeline {
         //     }
         // }
 
-        // stage('Build Docker Image') {
-        //     steps {
-        //         buildDockerImage(
-        //             dockerCredsId: env.NEXUS_DOCKER_CREDS_ID,
-        //             registryPush: env.NEXUS_DOCKER_REGISTRY_PUSH
-        //         )
-        //     }
-        // }
+        stage('Build Docker Image') {
+            steps {
+                buildDockerImage(
+                    dockerCredsId: env.NEXUS_DOCKER_CREDS_ID,
+                    registryPush: env.NEXUS_DOCKER_REGISTRY_PUSH
+                )
+            }
+        }
 
         // stage('Security Scan') {
         //     steps {
@@ -74,37 +74,37 @@ pipeline {
         //     }
         // }
 
-        // stage('Push Image') {
-        //     steps {
-        //         pushDockerImage(
-        //             dockerCredsId: env.NEXUS_DOCKER_CREDS_ID,
-        //             registryPush: env.NEXUS_DOCKER_REGISTRY_PUSH,
-        //             projectName: env.PROJECT_NAME
-        //         )
-        //     }
-        // }
+        stage('Push Image') {
+            steps {
+                pushDockerImage(
+                    dockerCredsId: env.NEXUS_DOCKER_CREDS_ID,
+                    registryPush: env.NEXUS_DOCKER_REGISTRY_PUSH,
+                    projectName: env.PROJECT_NAME
+                )
+            }
+        }
 
-        // stage('Clear Local Images') {
-        //     steps {
-        //         clearLocalImages(
-        //             registryPush: env.NEXUS_DOCKER_REGISTRY_PUSH,
-        //             projectName: env.PROJECT_NAME
-        //         )
-        //     }
-        // }
+        stage('Clear Local Images') {
+            steps {
+                clearLocalImages(
+                    registryPush: env.NEXUS_DOCKER_REGISTRY_PUSH,
+                    projectName: env.PROJECT_NAME
+                )
+            }
+        }
 
-        // stage('Deploy to VM') {
-        //     steps {
-        //         deployToVM(
-        //             registryPull: env.NEXUS_DOCKER_REGISTRY_PULL,
-        //             dockerCredsId: env.NEXUS_DOCKER_CREDS_ID,
-        //             projectName: env.PROJECT_NAME,
-        //             vmIp: env.VM_IP,
-        //             vmPath: env.VM_PATH,
-        //             vmSshCredsId: env.VM_SSH_CREDS_ID
-        //         )
-        //     }
-        // }
+        stage('Deploy to VM') {
+            steps {
+                deployToVM(
+                    registryPull: env.NEXUS_DOCKER_REGISTRY_PULL,
+                    dockerCredsId: env.NEXUS_DOCKER_CREDS_ID,
+                    projectName: env.PROJECT_NAME,
+                    vmIp: env.VM_IP,
+                    vmPath: env.VM_PATH,
+                    vmSshCredsId: env.VM_SSH_CREDS_ID
+                )
+            }
+        }
     }
 
     post {
